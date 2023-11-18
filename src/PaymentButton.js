@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { Button } from "@mui/base";
+import PaymentDialog from "./PaymentDialog";
 const PaymentButton = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
+    console.log("dialog open");
     setDialogOpen(true);
   };
 
   const handleDialogClose = () => {
+    console.log("dialog close");
     setDialogOpen(false);
   };
 
   return (
     <div>
-      <Button color="primary" onClick={handleDialogOpen}>
+      <button className="payment-button" onClick={handleDialogOpen}>
         Pay Now
-      </Button>
+      </button>
+      <PaymentDialog open={dialogOpen} onClose={handleDialogClose} />
     </div>
   );
 };

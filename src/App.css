@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+.payment-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.payment-dialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-dialog.open {
+  display: block;
+}
+
+.dialog-content {
+  text-align: left;
+}
+
+.dialog-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialog-content input,
+.dialog-content select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.dialog-actions {
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
