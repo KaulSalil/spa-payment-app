@@ -16,23 +16,32 @@ const PaymentDialog = ({ open, onClose }) => {
 
   const isSubmitDisabled = !!to && !amount && !isNaN(amount);
 
+  const clearValuesPostSubmit = () => {
+    setAmount(0);
+    setTo("");
+    setFrom("");
+    setDescription("");
+  };
+
   const handleSubmit = async () => {
     try {
       setSubmitting(true);
       const response = await mockApiRequest({ to, from, amount, description });
       console.log("Success", response);
+      alert("Success:" + JSON.stringify(response));
     } catch (error) {
       if (error.status === 400) {
         console.error("Bad Request:", error);
-        // Display error message to the user
+        alert("Error:" + JSON.stringify(error));
       } else if (error.status === 401) {
         console.error("Unauthorized:", error);
-        // Redirect to login page (you can implement this part)
+        alert("Error:" + JSON.stringify(error));
       } else {
         console.error("Server Error:", error);
-        // Display error message to the user
+        alert("Error:" + JSON.stringify(error));
       }
     } finally {
+      clearValuesPostSubmit();
       setSubmitting(false);
       onClose();
     }
