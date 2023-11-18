@@ -62,7 +62,13 @@ const PaymentDialog = ({ open, onClose }) => {
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button></Button>
+        <Button
+          color="primary"
+          onClick={handleSubmit}
+          disabled={isSubmitDisabled || submitting}
+        >
+          Submit
+        </Button>
       </DialogActions>
     </Dialog>
   );
