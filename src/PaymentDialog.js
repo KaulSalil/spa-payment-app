@@ -6,6 +6,7 @@ import {
   DialogActions,
 } from "@mui/material";
 import { Button, MenuItem, TextField } from "@mui/material";
+import { mockApiRequest } from "./api";
 const PaymentDialog = ({ open, onClose }) => {
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("USD");
@@ -13,10 +14,28 @@ const PaymentDialog = ({ open, onClose }) => {
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const isSubmitDisabled = !!to && !!from && !amount && isNaN(amount);
+  const isSubmitDisabled = !!to && !amount && !isNaN(amount);
 
   const handleSubmit = async () => {
-    setSubmitting(true);
+    try {
+      setSubmitting(true);
+      const response = await mockApiRequest({ to, from, amount, description });
+      console.log("Success", response);
+    } catch (error) {
+      if (error.status === 400) {
+        console.error("Bad Request:", error);
+        // Display error message to the user
+      } else if (error.status === 401) {
+        console.error("Unauthorized:", error);
+        // Redirect to login page (you can implement this part)
+      } else {
+        console.error("Server Error:", error);
+        // Display error message to the user
+      }
+    } finally {
+      setSubmitting(false);
+      onClose();
+    }
   };
 
   return (
