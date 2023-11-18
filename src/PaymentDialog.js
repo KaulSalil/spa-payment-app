@@ -10,7 +10,7 @@ import { mockApiRequest } from "./api";
 const PaymentDialog = ({ open, onClose }) => {
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("USD");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -52,6 +52,7 @@ const PaymentDialog = ({ open, onClose }) => {
       <DialogTitle>Payment Details</DialogTitle>
       <DialogContent>
         <TextField
+          style={{ marginBottom: 10 }}
           label="To"
           fullWidth
           value={to}
@@ -62,6 +63,7 @@ const PaymentDialog = ({ open, onClose }) => {
           }
         />
         <TextField
+          style={{ marginBottom: 10 }}
           label="From"
           select
           fullWidth
@@ -72,6 +74,7 @@ const PaymentDialog = ({ open, onClose }) => {
           <MenuItem value="INR">INR</MenuItem>
         </TextField>
         <TextField
+          style={{ marginBottom: 10 }}
           label="Amount"
           type="number"
           fullWidth
@@ -81,6 +84,7 @@ const PaymentDialog = ({ open, onClose }) => {
           helperText={!!amount && isNaN(Number(amount)) ? "Invalid Amount" : ""}
         />
         <TextField
+          fullWidth
           label="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
