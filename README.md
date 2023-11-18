@@ -7,3 +7,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
+
+Things I would like to added :
+Typescript
+Unit Test Cases
+
+Assumptions:Tested on my local machine hence not optimized for hosting etc
